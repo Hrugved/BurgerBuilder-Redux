@@ -18,7 +18,6 @@ class Orders extends Component {
         if(!this.props.loading) {
             if(this.props.orders.length){
                 orders = this.props.orders.map(order => {
-                    console.log(order)
                     return (
                         <Order 
                             ingredients={order.ingredients}
