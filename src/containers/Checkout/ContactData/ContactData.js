@@ -100,7 +100,6 @@ class ContactData extends Component {
     }
 
     render() {
-        console.log('ContactData')
         const formElements = Object.keys(this.state.orderForm).map(key => {
             const obj = this.state.orderForm[key]
             return(
