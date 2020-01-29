@@ -58,13 +58,14 @@ class ContactData extends Component {
         const order = {
             ingredients: this.props.ings,
             price: this.props.price,
-            customer : {}
+            customer : {},
+            userId: this.props.userId
         }
         Object.keys(orderForm).forEach(key => {
             order.customer[key] = orderForm[key].value
         })
         console.log(order)
-        this.props.orderBurgerHandler(order)
+        this.props.orderBurgerHandler(this.props.token,order)
     }
 
     checkValidity(value,validation) { 
@@ -137,13 +138,15 @@ const mapStateToProps = state => {
     return {
         ings: state.burgerBuilder.ingredients,
         price: state.burgerBuilder.totalPrice,
-        loading: state.order.loading
+        loading: state.order.loading,
+        token: state.auth.idToken,
+        userId: state.auth.userId
     }
 }
 
 const mapDispatchToProps = dispatch => {
     return {
-        orderBurgerHandler: (order) => dispatch(actions.purchaseBurger(order))
+        orderBurgerHandler: (token,order) => dispatch(actions.purchaseBurger(token,order))
     }
 }
 
